@@ -10,7 +10,7 @@ import {ROUTER_DIRECTIVES} from "@angular/router"
     template:`
         <h1>Child Route</h1>
         <nav>
-            <a routerLink="/favorites" routerLinkActive="active">Favorite Component</a>
+            <a routerLink="/reader/favorites" routerLinkActive="active">Favorite Component</a>
             <a routerLink="/reader/profile" routerLinkActive="active">Profile Component</a>
         </nav>
        <router-outlet></router-outlet>

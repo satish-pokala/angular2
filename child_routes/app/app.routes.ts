@@ -2,13 +2,10 @@
  * Created by satish on 09/08/16.
  */
 
-import {provideRouter, RouterConfig } from '@angular/router';
+import {RouterModule, RouterConfig } from '@angular/router';
 import {ReaderComponent} from "./reader.component";
-import {ContributorComponent} from "./contributor.component";
 import {FavoritesComponent} from "./favorites.component";
-import {InputComponent} from "./input.component";
 import {ProfileComponent} from "./profile.component";
-import {MailerComponent} from "./mailer.component";
 
 const routes: RouterConfig = [
     {path: '', redirectTo: 'reader', pathMatch : 'full'},
@@ -20,6 +17,4 @@ const routes: RouterConfig = [
     ]}
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes)
-];
+export const routing = RouterModule.forRoot(routes);

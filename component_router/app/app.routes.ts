@@ -2,7 +2,7 @@
  * Created by satish on 09/08/16.
  */
 
-import {provideRouter, RouterConfig } from '@angular/router';
+import {RouterConfig ,RouterModule } from '@angular/router';
 import {ReaderComponent} from "./reader.component";
 import {ContributorComponent} from "./contributor.component";
 
@@ -12,6 +12,4 @@ const routes: RouterConfig = [
     {path : 'contributor', component : ContributorComponent}
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes)
-];
+export const routing = RouterModule.forRoot(routes);

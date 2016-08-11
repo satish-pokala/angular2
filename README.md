@@ -1,2 +1,2 @@
-# angular2rc4
-samples of angular2rc4
+# angular2
+exmaples of angular2

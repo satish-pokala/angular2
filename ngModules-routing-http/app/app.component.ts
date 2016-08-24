@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
-
+import { Component }          from '@angular/core';
 @Component({
-    selector:'my-app',
-    template:`
-        <h1>{{title}}</h1>
-        <nav>
-        <a routerLink="/crisis-center" routerLinkActive="active">Crises</a>
-        <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-         </nav>
-        <router-outlet></router-outlet>
-    `
+    selector: 'my-app',
+    template: `
+    <h1 class="title">Angular2 RC</h1>
+    <nav>
+      <a routerLink="/crisis-center" routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">Crisis Center</a>
+      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+      <a routerLink="/crisis-center/admin" routerLinkActive="active">Crisis Admin</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `
 })
-
-export class AppComponent{
-    title = 'Tour of Heroes';
+export class AppComponent {
 }
-

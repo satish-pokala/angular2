@@ -1,23 +1,20 @@
-/**
- * Created by Sonakshi on 8/22/2016.
- */
 import { Component, OnInit }      from '@angular/core';
-import { Router, ActivatedRoute,Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Crisis }         from './crisis.service';
 import { Observable }     from 'rxjs/Observable';
-import {CrisisService} from "./crisis.service";
 @Component({
     template: `
   <div *ngIf="crisis">
-    <h3>"Hello {{crisis.name}}"</h3>
+    <h3>"{{editName}}"</h3>
     <div>
       <label>Id: </label>{{crisis.id}}</div>
     <div>
       <label>Name: </label>
-      <input [(ngModel)]="crisis.name" placeholder="name"/>
+      <input [(ngModel)]="editName" placeholder="name"/>
     </div>
     <p>
-      <button (click)="back()">Back</button>
+      <button (click)="save()">Save</button>
+      <button (click)="cancel()">Cancel</button>
     </p>
   </div>
   `,
@@ -28,25 +25,38 @@ export class CrisisDetailComponent implements OnInit {
     editName: string;
     constructor(
         private route: ActivatedRoute,
-        private router: Router,private crisisService:CrisisService) { }
+        private router: Router) { }
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            if (params['id'] !== undefined) {
-                let id = +params['id'];
-                this.crisisService.getCrisis(id)
-                    .then(crisis => this.crisis = crisis);
-            }
+        console.log(this.route.data);
+        this.route.data.forEach((data: { crisis: Crisis }) => {
+            this.editName = data.crisis.name;
+            this.crisis = data.crisis;
         });
     }
     cancel() {
         this.gotoCrises();
     }
-    back() {
-       window.history.back();
+    save() {
+        this.crisis.name = this.editName;
+        this.gotoCrises();
     }
-
+    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+        console.log("Can Deactivate");
+        if (!this.crisis || this.crisis.name === this.editName) {
+            return true;
+        }
+        // Otherwise ask the user with the dialog service and return its
+        // promise which resolves to true or false when the user decides
+        //return this.dialogService.confirm('Discard changes?');
+        return true;
+    }
     gotoCrises() {
         let crisisId = this.crisis ? this.crisis.id : null;
-        this.router.navigate(['/crisis-center',crisisId]);
+        // Pass along the hero id if available
+        // so that the CrisisListComponent can select that hero.
+        // Add a totally useless `foo` parameter for kicks.
+        // Absolute link
+        this.router.navigate(['/crisis-center', { id: crisisId, foo: 'foo' }]);
     }
 }

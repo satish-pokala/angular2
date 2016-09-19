@@ -9,6 +9,8 @@ import {CrisisCenterComponent} from "./crisis-center.component";
 import {CrisisListComponent} from "./crisis-list.component";
 import {CrisisDetailComponent} from "./crisis-detail.component";
 import {CrisisService} from "./crisis.service";
+import {CrisisAdminComponent} from "./crisis-admin.component";
+import {CrisisDetailResolve} from "./crisis-detail.resolve";
 
 @NgModule({
     imports: [
@@ -19,10 +21,12 @@ import {CrisisService} from "./crisis.service";
     declarations: [
         CrisisCenterComponent,
         CrisisListComponent,
-        CrisisDetailComponent
+        CrisisDetailComponent,
+        CrisisAdminComponent
     ],
     providers: [
-        CrisisService
+        CrisisService,
+        CrisisDetailResolve
     ]
 })
 export class CrisisCenterModule {}

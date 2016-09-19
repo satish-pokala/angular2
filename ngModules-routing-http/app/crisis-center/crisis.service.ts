@@ -1,6 +1,3 @@
-/**
- * Created by Sonakshi on 8/22/2016.
- */
 export class Crisis {
     constructor(public id: number, public name: string) { }
 }
@@ -21,4 +18,3 @@ export class CrisisService {
             .then(crises => crises.find(crisis => crisis.id === +id));
     }
 }
-

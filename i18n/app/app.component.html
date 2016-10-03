@@ -1,0 +1,12 @@
+<a class="link" (click)="selectLocale('en', 'US', 'USD');">English</a>
+<a class="link" (click)="selectLocale('fr', 'FR', 'EUR');">France</a>
+<a class="link" (click)="selectLocale('it', 'IT', 'EUR');">Italy</a>
+<a class="link" (click)="selectLocale('ar', 'SA', 'SAR');">Arabic</a>
+
+
+<p>{{'TITLE'|translate:lang}}</p>
+<p>{{'SUBTITLE'|translate:lang}}</p>
+<p>{{ today | localeDate:defaultLocale:'fullDate' }}</p>
+<p>{{ b | localeCurrency:defaultLocale:currency:true:'1.2-2' }}</p>
+
+<div *ngIf="currentCountry=='US'">I am in USA</div>
